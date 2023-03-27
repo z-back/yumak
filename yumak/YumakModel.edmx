@@ -1,0 +1,723 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="YumakModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ArgeTasarimR">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProjeID" Type="int" />
+          <Property Name="ProjeDetayID" Type="int" />
+          <Property Name="PlanlananKatiModelCizimi" Type="datetime" />
+          <Property Name="GerceklesenKatiModelCizimi" Type="datetime" />
+          <Property Name="PlanlananTeknikResimCizimi" Type="datetime" />
+          <Property Name="GerceklesenTeknikResimCizimi" Type="datetime" />
+          <Property Name="ResimOnayTarihi" Type="datetime" />
+          <Property Name="Recete" Type="datetime" />
+          <Property Name="OperasyonelRecete" Type="datetime" />
+          <Property Name="AkisSemasi" Type="nvarchar" MaxLength="50" />
+          <Property Name="TamamlanmaDurumu" Type="bit" />
+        </EntityType>
+        <EntityType Name="DisHizmet">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProjeID" Type="int" />
+          <Property Name="ProjeDetayID" Type="int" />
+          <Property Name="ResimIletimTarihi" Type="datetime" />
+          <Property Name="SatinAlmaTerminTarihi" Type="datetime" />
+          <Property Name="SatinAlmaNumuneGelisTarihi" Type="datetime" />
+          <Property Name="NumuneOnayTarihi" Type="datetime" />
+          <Property Name="TamamlanmaDurumu" Type="bit" />
+        </EntityType>
+        <EntityType Name="KaliphaneAparat">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProjeID" Type="int" />
+          <Property Name="ProjeDetayID" Type="int" />
+          <Property Name="IhtiyacDuyulanKalipAdedi" Type="int" />
+          <Property Name="KalipTerminTarihi" Type="datetime" />
+          <Property Name="KalipGerceklesenNumuneTarihi" Type="datetime" />
+          <Property Name="KaliteNumuneOnayTarihi" Type="datetime" />
+          <Property Name="IhtiyacDuyulanAparatAdedi" Type="int" />
+          <Property Name="AparatTerminTarihi" Type="datetime" />
+          <Property Name="AparatGerceklesenTeslimTarihi" Type="datetime" />
+          <Property Name="TamamlanmaDurumu" Type="bit" />
+        </EntityType>
+        <EntityType Name="KaliteKontrol">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProjeID" Type="int" />
+          <Property Name="ProjeDetayID" Type="int" />
+          <Property Name="OzelOlcmeEkipmaniIhtiyaci" Type="bit" />
+          <Property Name="OzelOlcmeEkipmanlariSiparisTarihi" Type="datetime" />
+          <Property Name="OzelOlcmeTakimlarTeslimTarihi" Type="datetime" />
+          <Property Name="TamamlanmaDurumu" Type="bit" />
+        </EntityType>
+        <EntityType Name="Kullanici">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Ad" Type="nvarchar" MaxLength="50" />
+          <Property Name="Soyad" Type="nvarchar" MaxLength="50" />
+          <Property Name="KullanıcıAD" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Montaj">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProjeID" Type="int" />
+          <Property Name="ProjeDetayID" Type="int" />
+          <Property Name="IlkNumune" Type="nvarchar" MaxLength="50" />
+          <Property Name="PilotMontaj" Type="nvarchar" MaxLength="50" />
+          <Property Name="TamamlanmaDurumu" Type="bit" />
+        </EntityType>
+        <EntityType Name="ParcaGenelBilgiler">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProjeID" Type="int" />
+          <Property Name="ProjeDetayID" Type="int" />
+          <Property Name="Malzeme" Type="nvarchar" MaxLength="50" />
+          <Property Name="HamMalzemeUretimYontemi" Type="nvarchar" MaxLength="50" />
+          <Property Name="Sertlik" Type="nvarchar" MaxLength="50" />
+          <Property Name="IsilIslem" Type="nvarchar" MaxLength="50" />
+          <Property Name="Kaplama" Type="nvarchar" MaxLength="50" />
+          <Property Name="TedarikciBilgisi" Type="nvarchar" MaxLength="50" />
+          <Property Name="TamamlanmaDurumu" Type="bit" />
+        </EntityType>
+        <EntityType Name="ProjeDetay">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProjeUstID" Type="int" />
+          <Property Name="StokID" Type="int" />
+          <Property Name="KullaniciID" Type="int" />
+          <Property Name="SiraNo" Type="float" />
+          <Property Name="YumakNo" Type="nvarchar" MaxLength="20" />
+          <Property Name="Aciklama" Type="nvarchar" MaxLength="500" />
+          <Property Name="YeniUrunTalep" Type="nvarchar" MaxLength="50" />
+          <Property Name="Fizibilite" Type="nvarchar" MaxLength="50" />
+          <Property Name="ProsesTasarim" Type="nvarchar" MaxLength="50" />
+          <Property Name="IleriKalitePlanlamasiAPQP" Type="nvarchar" MaxLength="50" />
+          <Property Name="ProjeBaslangicTarihi" Type="datetime" />
+          <Property Name="PlanlananProjeTarihi" Type="datetime" />
+          <Property Name="GerceklesenProjeBitisTarihi" Type="datetime" />
+          <Property Name="Durum" Type="nvarchar" MaxLength="50" />
+          <Property Name="ParcaGenelBilgisi" Type="bit" />
+          <Property Name="ArgeTasarimBilgisi" Type="bit" />
+          <Property Name="DisHizmetBilgisi" Type="bit" />
+          <Property Name="KaliphaneBilgisi" Type="bit" />
+          <Property Name="KaliteKontrolBilgisi" Type="bit" />
+          <Property Name="UretimPlanlamaBilgisi" Type="bit" />
+          <Property Name="MontajBilgisi" Type="bit" />
+          <Property Name="SevkiyatBilgisi" Type="bit" />
+          <Property Name="Yuzde" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Sayac" Type="int" />
+        </EntityType>
+        <EntityType Name="ProjeUstBilgileri">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StokID" Type="int" />
+          <Property Name="KullaniciID" Type="int" />
+          <Property Name="ProjeBaslangicTarihi" Type="datetime" />
+          <Property Name="PlanlananProjeTarihi" Type="datetime" />
+          <Property Name="BildirimTarihi" Type="datetime" />
+          <Property Name="GerceklesenProjeTarihi" Type="datetime" />
+          <Property Name="Aciklama" Type="nvarchar" MaxLength="500" />
+          <Property Name="Durum" Type="nvarchar" MaxLength="50" />
+          <Property Name="OEMNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="Yuzde" Type="decimal" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="SevkiyatPaketleme">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProjeID" Type="int" />
+          <Property Name="ProjeDetayID" Type="int" />
+          <Property Name="YeniAmbalajIhtiyaci" Type="bit" />
+          <Property Name="TamamlanmaDurumu" Type="bit" />
+        </EntityType>
+        <EntityType Name="Stok">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProjeID" Type="int" />
+          <Property Name="ProjeDetayID" Type="int" />
+          <Property Name="YumakNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="UrunAd" Type="nvarchar" MaxLength="50" />
+          <Property Name="Resim" Type="varbinary(max)" />
+          <Property Name="OEMNo" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Toplanti">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProjeID" Type="int" />
+          <Property Name="ProjeDetayID" Type="int" />
+          <Property Name="EtapNo" Type="int" />
+          <Property Name="ToplantiAd" Type="nvarchar" MaxLength="50" />
+          <Property Name="ToplantiDetay" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="UretimPlanlama">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProjeID" Type="int" />
+          <Property Name="ProjeDetayID" Type="int" />
+          <Property Name="IhtiyacDuyulanOzelTakim" Type="nvarchar" MaxLength="50" />
+          <Property Name="OzelTakimlarSiparisTarihi" Type="datetime" />
+          <Property Name="OzelTakimlarTeslimTarihi" Type="datetime" />
+          <Property Name="DenemeUretimTarihi" Type="datetime" />
+          <Property Name="KaliteNumuneOnayTarihi" Type="datetime" />
+          <Property Name="TamamlanmaDurumu" Type="bit" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Yumak.dbo.vKullaniciProjeUst' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vKullaniciProjeUst">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="kID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="StokID" Type="int" />
+          <Property Name="KullaniciID" Type="int" />
+          <Property Name="ProjeBaslangicTarihi" Type="datetime" />
+          <Property Name="PlanlananProjeTarihi" Type="datetime" />
+          <Property Name="BildirimTarihi" Type="datetime" />
+          <Property Name="GerceklesenProjeTarihi" Type="datetime" />
+          <Property Name="Aciklama" Type="nvarchar" MaxLength="500" />
+          <Property Name="Durum" Type="nvarchar" MaxLength="50" />
+          <Property Name="OEMNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="kID" Type="int" Nullable="false" />
+          <Property Name="Ad" Type="nvarchar" MaxLength="50" />
+          <Property Name="Soyad" Type="nvarchar" MaxLength="50" />
+          <Property Name="KullanıcıAD" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityContainer Name="YumakModelStoreContainer">
+          <EntitySet Name="ArgeTasarimR" EntityType="Self.ArgeTasarimR" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DisHizmet" EntityType="Self.DisHizmet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="KaliphaneAparat" EntityType="Self.KaliphaneAparat" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="KaliteKontrol" EntityType="Self.KaliteKontrol" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Kullanici" EntityType="Self.Kullanici" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Montaj" EntityType="Self.Montaj" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ParcaGenelBilgiler" EntityType="Self.ParcaGenelBilgiler" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProjeDetay" EntityType="Self.ProjeDetay" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProjeUstBilgileri" EntityType="Self.ProjeUstBilgileri" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SevkiyatPaketleme" EntityType="Self.SevkiyatPaketleme" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Stok" EntityType="Self.Stok" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Toplanti" EntityType="Self.Toplanti" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UretimPlanlama" EntityType="Self.UretimPlanlama" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="vKullaniciProjeUst" EntityType="Self.vKullaniciProjeUst" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[vKullaniciProjeUst].[ID] AS [ID], 
+[vKullaniciProjeUst].[StokID] AS [StokID], 
+[vKullaniciProjeUst].[KullaniciID] AS [KullaniciID], 
+[vKullaniciProjeUst].[ProjeBaslangicTarihi] AS [ProjeBaslangicTarihi], 
+[vKullaniciProjeUst].[PlanlananProjeTarihi] AS [PlanlananProjeTarihi], 
+[vKullaniciProjeUst].[BildirimTarihi] AS [BildirimTarihi], 
+[vKullaniciProjeUst].[GerceklesenProjeTarihi] AS [GerceklesenProjeTarihi], 
+[vKullaniciProjeUst].[Aciklama] AS [Aciklama], 
+[vKullaniciProjeUst].[Durum] AS [Durum], 
+[vKullaniciProjeUst].[OEMNo] AS [OEMNo], 
+[vKullaniciProjeUst].[kID] AS [kID], 
+[vKullaniciProjeUst].[Ad] AS [Ad], 
+[vKullaniciProjeUst].[Soyad] AS [Soyad], 
+[vKullaniciProjeUst].[KullanıcıAD] AS [KullanıcıAD]
+FROM [dbo].[vKullaniciProjeUst] AS [vKullaniciProjeUst]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="YumakModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="ArgeTasarimR">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProjeID" Type="Int32" />
+          <Property Name="ProjeDetayID" Type="Int32" />
+          <Property Name="PlanlananKatiModelCizimi" Type="DateTime" Precision="3" />
+          <Property Name="GerceklesenKatiModelCizimi" Type="DateTime" Precision="3" />
+          <Property Name="PlanlananTeknikResimCizimi" Type="DateTime" Precision="3" />
+          <Property Name="GerceklesenTeknikResimCizimi" Type="DateTime" Precision="3" />
+          <Property Name="ResimOnayTarihi" Type="DateTime" Precision="3" />
+          <Property Name="Recete" Type="DateTime" Precision="3" />
+          <Property Name="OperasyonelRecete" Type="DateTime" Precision="3" />
+          <Property Name="AkisSemasi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TamamlanmaDurumu" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="DisHizmet">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProjeID" Type="Int32" />
+          <Property Name="ProjeDetayID" Type="Int32" />
+          <Property Name="ResimIletimTarihi" Type="DateTime" Precision="3" />
+          <Property Name="SatinAlmaTerminTarihi" Type="DateTime" Precision="3" />
+          <Property Name="SatinAlmaNumuneGelisTarihi" Type="DateTime" Precision="3" />
+          <Property Name="NumuneOnayTarihi" Type="DateTime" Precision="3" />
+          <Property Name="TamamlanmaDurumu" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="KaliphaneAparat">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProjeID" Type="Int32" />
+          <Property Name="ProjeDetayID" Type="Int32" />
+          <Property Name="IhtiyacDuyulanKalipAdedi" Type="Int32" />
+          <Property Name="KalipTerminTarihi" Type="DateTime" Precision="3" />
+          <Property Name="KalipGerceklesenNumuneTarihi" Type="DateTime" Precision="3" />
+          <Property Name="KaliteNumuneOnayTarihi" Type="DateTime" Precision="3" />
+          <Property Name="IhtiyacDuyulanAparatAdedi" Type="Int32" />
+          <Property Name="AparatTerminTarihi" Type="DateTime" Precision="3" />
+          <Property Name="AparatGerceklesenTeslimTarihi" Type="DateTime" Precision="3" />
+          <Property Name="TamamlanmaDurumu" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="KaliteKontrol">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProjeID" Type="Int32" />
+          <Property Name="ProjeDetayID" Type="Int32" />
+          <Property Name="OzelOlcmeEkipmaniIhtiyaci" Type="Boolean" />
+          <Property Name="OzelOlcmeEkipmanlariSiparisTarihi" Type="DateTime" Precision="3" />
+          <Property Name="OzelOlcmeTakimlarTeslimTarihi" Type="DateTime" Precision="3" />
+          <Property Name="TamamlanmaDurumu" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="Kullanici">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Ad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Soyad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="KullanıcıAD" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Montaj">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProjeID" Type="Int32" />
+          <Property Name="ProjeDetayID" Type="Int32" />
+          <Property Name="IlkNumune" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PilotMontaj" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TamamlanmaDurumu" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="ParcaGenelBilgiler">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProjeID" Type="Int32" />
+          <Property Name="ProjeDetayID" Type="Int32" />
+          <Property Name="Malzeme" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="HamMalzemeUretimYontemi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Sertlik" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsilIslem" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Kaplama" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TedarikciBilgisi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TamamlanmaDurumu" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="SevkiyatPaketleme">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProjeID" Type="Int32" />
+          <Property Name="ProjeDetayID" Type="Int32" />
+          <Property Name="YeniAmbalajIhtiyaci" Type="Boolean" />
+          <Property Name="TamamlanmaDurumu" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="Stok">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="YumakNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UrunAd" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Resim" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="OEMNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ProjeID" Type="Int32" />
+          <Property Name="ProjeDetayID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Toplanti">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProjeID" Type="Int32" />
+          <Property Name="ProjeDetayID" Type="Int32" />
+          <Property Name="EtapNo" Type="Int32" />
+          <Property Name="ToplantiAd" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ToplantiDetay" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="UretimPlanlama">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProjeID" Type="Int32" />
+          <Property Name="ProjeDetayID" Type="Int32" />
+          <Property Name="IhtiyacDuyulanOzelTakim" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="OzelTakimlarSiparisTarihi" Type="DateTime" Precision="3" />
+          <Property Name="OzelTakimlarTeslimTarihi" Type="DateTime" Precision="3" />
+          <Property Name="DenemeUretimTarihi" Type="DateTime" Precision="3" />
+          <Property Name="KaliteNumuneOnayTarihi" Type="DateTime" Precision="3" />
+          <Property Name="TamamlanmaDurumu" Type="Boolean" />
+        </EntityType>
+        <EntityContainer Name="YumakEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ArgeTasarimRs" EntityType="Self.ArgeTasarimR" />
+          <EntitySet Name="DisHizmets" EntityType="Self.DisHizmet" />
+          <EntitySet Name="KaliphaneAparats" EntityType="Self.KaliphaneAparat" />
+          <EntitySet Name="KaliteKontrols" EntityType="Self.KaliteKontrol" />
+          <EntitySet Name="Kullanicis" EntityType="Self.Kullanici" />
+          <EntitySet Name="Montajs" EntityType="Self.Montaj" />
+          <EntitySet Name="ParcaGenelBilgilers" EntityType="Self.ParcaGenelBilgiler" />
+          <EntitySet Name="SevkiyatPaketlemes" EntityType="Self.SevkiyatPaketleme" />
+          <EntitySet Name="Stoks" EntityType="Self.Stok" />
+          <EntitySet Name="Toplantis" EntityType="Self.Toplanti" />
+          <EntitySet Name="UretimPlanlamas" EntityType="Self.UretimPlanlama" />
+          <EntitySet Name="vKullaniciProjeUsts" EntityType="YumakModel.vKullaniciProjeUst" />
+          <EntitySet Name="ProjeDetays" EntityType="YumakModel.ProjeDetay" />
+          <EntitySet Name="ProjeUstBilgileris" EntityType="YumakModel.ProjeUstBilgileri" />
+        </EntityContainer>
+        <EntityType Name="vKullaniciProjeUst">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="kID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="StokID" Type="Int32" />
+          <Property Name="KullaniciID" Type="Int32" />
+          <Property Name="ProjeBaslangicTarihi" Type="DateTime" Precision="3" />
+          <Property Name="PlanlananProjeTarihi" Type="DateTime" Precision="3" />
+          <Property Name="BildirimTarihi" Type="DateTime" Precision="3" />
+          <Property Name="GerceklesenProjeTarihi" Type="DateTime" Precision="3" />
+          <Property Name="Aciklama" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Durum" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="OEMNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="kID" Type="Int32" Nullable="false" />
+          <Property Name="Ad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Soyad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="KullanıcıAD" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ProjeDetay">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProjeUstID" Type="Int32" />
+          <Property Name="StokID" Type="Int32" />
+          <Property Name="KullaniciID" Type="Int32" />
+          <Property Name="SiraNo" Type="Double" />
+          <Property Name="YumakNo" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Aciklama" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="YeniUrunTalep" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Fizibilite" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ProsesTasarim" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IleriKalitePlanlamasiAPQP" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ProjeBaslangicTarihi" Type="DateTime" Precision="3" />
+          <Property Name="PlanlananProjeTarihi" Type="DateTime" Precision="3" />
+          <Property Name="GerceklesenProjeBitisTarihi" Type="DateTime" Precision="3" />
+          <Property Name="Durum" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ParcaGenelBilgisi" Type="Boolean" />
+          <Property Name="ArgeTasarimBilgisi" Type="Boolean" />
+          <Property Name="DisHizmetBilgisi" Type="Boolean" />
+          <Property Name="KaliphaneBilgisi" Type="Boolean" />
+          <Property Name="KaliteKontrolBilgisi" Type="Boolean" />
+          <Property Name="UretimPlanlamaBilgisi" Type="Boolean" />
+          <Property Name="MontajBilgisi" Type="Boolean" />
+          <Property Name="SevkiyatBilgisi" Type="Boolean" />
+          <Property Name="Yuzde" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Sayac" Type="Int32" />
+        </EntityType>
+        <EntityType Name="ProjeUstBilgileri">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StokID" Type="Int32" />
+          <Property Name="KullaniciID" Type="Int32" />
+          <Property Name="ProjeBaslangicTarihi" Type="DateTime" Precision="3" />
+          <Property Name="PlanlananProjeTarihi" Type="DateTime" Precision="3" />
+          <Property Name="BildirimTarihi" Type="DateTime" Precision="3" />
+          <Property Name="GerceklesenProjeTarihi" Type="DateTime" Precision="3" />
+          <Property Name="Aciklama" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Durum" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="OEMNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Yuzde" Type="Decimal" Precision="18" Scale="2" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="YumakModelStoreContainer" CdmEntityContainer="YumakEntities">
+          <EntitySetMapping Name="ArgeTasarimRs">
+            <EntityTypeMapping TypeName="YumakModel.ArgeTasarimR">
+              <MappingFragment StoreEntitySet="ArgeTasarimR">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ProjeID" ColumnName="ProjeID" />
+                <ScalarProperty Name="ProjeDetayID" ColumnName="ProjeDetayID" />
+                <ScalarProperty Name="PlanlananKatiModelCizimi" ColumnName="PlanlananKatiModelCizimi" />
+                <ScalarProperty Name="GerceklesenKatiModelCizimi" ColumnName="GerceklesenKatiModelCizimi" />
+                <ScalarProperty Name="PlanlananTeknikResimCizimi" ColumnName="PlanlananTeknikResimCizimi" />
+                <ScalarProperty Name="GerceklesenTeknikResimCizimi" ColumnName="GerceklesenTeknikResimCizimi" />
+                <ScalarProperty Name="ResimOnayTarihi" ColumnName="ResimOnayTarihi" />
+                <ScalarProperty Name="Recete" ColumnName="Recete" />
+                <ScalarProperty Name="OperasyonelRecete" ColumnName="OperasyonelRecete" />
+                <ScalarProperty Name="AkisSemasi" ColumnName="AkisSemasi" />
+                <ScalarProperty Name="TamamlanmaDurumu" ColumnName="TamamlanmaDurumu" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DisHizmets">
+            <EntityTypeMapping TypeName="YumakModel.DisHizmet">
+              <MappingFragment StoreEntitySet="DisHizmet">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ProjeID" ColumnName="ProjeID" />
+                <ScalarProperty Name="ProjeDetayID" ColumnName="ProjeDetayID" />
+                <ScalarProperty Name="ResimIletimTarihi" ColumnName="ResimIletimTarihi" />
+                <ScalarProperty Name="SatinAlmaTerminTarihi" ColumnName="SatinAlmaTerminTarihi" />
+                <ScalarProperty Name="SatinAlmaNumuneGelisTarihi" ColumnName="SatinAlmaNumuneGelisTarihi" />
+                <ScalarProperty Name="NumuneOnayTarihi" ColumnName="NumuneOnayTarihi" />
+                <ScalarProperty Name="TamamlanmaDurumu" ColumnName="TamamlanmaDurumu" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="KaliphaneAparats">
+            <EntityTypeMapping TypeName="YumakModel.KaliphaneAparat">
+              <MappingFragment StoreEntitySet="KaliphaneAparat">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ProjeID" ColumnName="ProjeID" />
+                <ScalarProperty Name="ProjeDetayID" ColumnName="ProjeDetayID" />
+                <ScalarProperty Name="IhtiyacDuyulanKalipAdedi" ColumnName="IhtiyacDuyulanKalipAdedi" />
+                <ScalarProperty Name="KalipTerminTarihi" ColumnName="KalipTerminTarihi" />
+                <ScalarProperty Name="KalipGerceklesenNumuneTarihi" ColumnName="KalipGerceklesenNumuneTarihi" />
+                <ScalarProperty Name="KaliteNumuneOnayTarihi" ColumnName="KaliteNumuneOnayTarihi" />
+                <ScalarProperty Name="IhtiyacDuyulanAparatAdedi" ColumnName="IhtiyacDuyulanAparatAdedi" />
+                <ScalarProperty Name="AparatTerminTarihi" ColumnName="AparatTerminTarihi" />
+                <ScalarProperty Name="AparatGerceklesenTeslimTarihi" ColumnName="AparatGerceklesenTeslimTarihi" />
+                <ScalarProperty Name="TamamlanmaDurumu" ColumnName="TamamlanmaDurumu" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="KaliteKontrols">
+            <EntityTypeMapping TypeName="YumakModel.KaliteKontrol">
+              <MappingFragment StoreEntitySet="KaliteKontrol">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ProjeID" ColumnName="ProjeID" />
+                <ScalarProperty Name="ProjeDetayID" ColumnName="ProjeDetayID" />
+                <ScalarProperty Name="OzelOlcmeEkipmaniIhtiyaci" ColumnName="OzelOlcmeEkipmaniIhtiyaci" />
+                <ScalarProperty Name="OzelOlcmeEkipmanlariSiparisTarihi" ColumnName="OzelOlcmeEkipmanlariSiparisTarihi" />
+                <ScalarProperty Name="OzelOlcmeTakimlarTeslimTarihi" ColumnName="OzelOlcmeTakimlarTeslimTarihi" />
+                <ScalarProperty Name="TamamlanmaDurumu" ColumnName="TamamlanmaDurumu" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Kullanicis">
+            <EntityTypeMapping TypeName="YumakModel.Kullanici">
+              <MappingFragment StoreEntitySet="Kullanici">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Ad" ColumnName="Ad" />
+                <ScalarProperty Name="Soyad" ColumnName="Soyad" />
+                <ScalarProperty Name="KullanıcıAD" ColumnName="KullanıcıAD" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Montajs">
+            <EntityTypeMapping TypeName="YumakModel.Montaj">
+              <MappingFragment StoreEntitySet="Montaj">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ProjeID" ColumnName="ProjeID" />
+                <ScalarProperty Name="ProjeDetayID" ColumnName="ProjeDetayID" />
+                <ScalarProperty Name="IlkNumune" ColumnName="IlkNumune" />
+                <ScalarProperty Name="PilotMontaj" ColumnName="PilotMontaj" />
+                <ScalarProperty Name="TamamlanmaDurumu" ColumnName="TamamlanmaDurumu" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ParcaGenelBilgilers">
+            <EntityTypeMapping TypeName="YumakModel.ParcaGenelBilgiler">
+              <MappingFragment StoreEntitySet="ParcaGenelBilgiler">
+                <ScalarProperty Name="TamamlanmaDurumu" ColumnName="TamamlanmaDurumu" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ProjeID" ColumnName="ProjeID" />
+                <ScalarProperty Name="ProjeDetayID" ColumnName="ProjeDetayID" />
+                <ScalarProperty Name="Malzeme" ColumnName="Malzeme" />
+                <ScalarProperty Name="HamMalzemeUretimYontemi" ColumnName="HamMalzemeUretimYontemi" />
+                <ScalarProperty Name="Sertlik" ColumnName="Sertlik" />
+                <ScalarProperty Name="IsilIslem" ColumnName="IsilIslem" />
+                <ScalarProperty Name="Kaplama" ColumnName="Kaplama" />
+                <ScalarProperty Name="TedarikciBilgisi" ColumnName="TedarikciBilgisi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SevkiyatPaketlemes">
+            <EntityTypeMapping TypeName="YumakModel.SevkiyatPaketleme">
+              <MappingFragment StoreEntitySet="SevkiyatPaketleme">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ProjeID" ColumnName="ProjeID" />
+                <ScalarProperty Name="ProjeDetayID" ColumnName="ProjeDetayID" />
+                <ScalarProperty Name="YeniAmbalajIhtiyaci" ColumnName="YeniAmbalajIhtiyaci" />
+                <ScalarProperty Name="TamamlanmaDurumu" ColumnName="TamamlanmaDurumu" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Stoks">
+            <EntityTypeMapping TypeName="YumakModel.Stok">
+              <MappingFragment StoreEntitySet="Stok">
+                <ScalarProperty Name="ProjeDetayID" ColumnName="ProjeDetayID" />
+                <ScalarProperty Name="ProjeID" ColumnName="ProjeID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="YumakNo" ColumnName="YumakNo" />
+                <ScalarProperty Name="UrunAd" ColumnName="UrunAd" />
+                <ScalarProperty Name="Resim" ColumnName="Resim" />
+                <ScalarProperty Name="OEMNo" ColumnName="OEMNo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Toplantis">
+            <EntityTypeMapping TypeName="YumakModel.Toplanti">
+              <MappingFragment StoreEntitySet="Toplanti">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ProjeID" ColumnName="ProjeID" />
+                <ScalarProperty Name="ProjeDetayID" ColumnName="ProjeDetayID" />
+                <ScalarProperty Name="EtapNo" ColumnName="EtapNo" />
+                <ScalarProperty Name="ToplantiAd" ColumnName="ToplantiAd" />
+                <ScalarProperty Name="ToplantiDetay" ColumnName="ToplantiDetay" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UretimPlanlamas">
+            <EntityTypeMapping TypeName="YumakModel.UretimPlanlama">
+              <MappingFragment StoreEntitySet="UretimPlanlama">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ProjeID" ColumnName="ProjeID" />
+                <ScalarProperty Name="ProjeDetayID" ColumnName="ProjeDetayID" />
+                <ScalarProperty Name="IhtiyacDuyulanOzelTakim" ColumnName="IhtiyacDuyulanOzelTakim" />
+                <ScalarProperty Name="OzelTakimlarSiparisTarihi" ColumnName="OzelTakimlarSiparisTarihi" />
+                <ScalarProperty Name="OzelTakimlarTeslimTarihi" ColumnName="OzelTakimlarTeslimTarihi" />
+                <ScalarProperty Name="DenemeUretimTarihi" ColumnName="DenemeUretimTarihi" />
+                <ScalarProperty Name="KaliteNumuneOnayTarihi" ColumnName="KaliteNumuneOnayTarihi" />
+                <ScalarProperty Name="TamamlanmaDurumu" ColumnName="TamamlanmaDurumu" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vKullaniciProjeUsts">
+            <EntityTypeMapping TypeName="YumakModel.vKullaniciProjeUst">
+              <MappingFragment StoreEntitySet="vKullaniciProjeUst">
+                <ScalarProperty Name="KullanıcıAD" ColumnName="KullanıcıAD" />
+                <ScalarProperty Name="Soyad" ColumnName="Soyad" />
+                <ScalarProperty Name="Ad" ColumnName="Ad" />
+                <ScalarProperty Name="kID" ColumnName="kID" />
+                <ScalarProperty Name="OEMNo" ColumnName="OEMNo" />
+                <ScalarProperty Name="Durum" ColumnName="Durum" />
+                <ScalarProperty Name="Aciklama" ColumnName="Aciklama" />
+                <ScalarProperty Name="GerceklesenProjeTarihi" ColumnName="GerceklesenProjeTarihi" />
+                <ScalarProperty Name="BildirimTarihi" ColumnName="BildirimTarihi" />
+                <ScalarProperty Name="PlanlananProjeTarihi" ColumnName="PlanlananProjeTarihi" />
+                <ScalarProperty Name="ProjeBaslangicTarihi" ColumnName="ProjeBaslangicTarihi" />
+                <ScalarProperty Name="KullaniciID" ColumnName="KullaniciID" />
+                <ScalarProperty Name="StokID" ColumnName="StokID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProjeDetays">
+            <EntityTypeMapping TypeName="YumakModel.ProjeDetay">
+              <MappingFragment StoreEntitySet="ProjeDetay">
+                <ScalarProperty Name="Sayac" ColumnName="Sayac" />
+                <ScalarProperty Name="Yuzde" ColumnName="Yuzde" />
+                <ScalarProperty Name="SevkiyatBilgisi" ColumnName="SevkiyatBilgisi" />
+                <ScalarProperty Name="MontajBilgisi" ColumnName="MontajBilgisi" />
+                <ScalarProperty Name="UretimPlanlamaBilgisi" ColumnName="UretimPlanlamaBilgisi" />
+                <ScalarProperty Name="KaliteKontrolBilgisi" ColumnName="KaliteKontrolBilgisi" />
+                <ScalarProperty Name="KaliphaneBilgisi" ColumnName="KaliphaneBilgisi" />
+                <ScalarProperty Name="DisHizmetBilgisi" ColumnName="DisHizmetBilgisi" />
+                <ScalarProperty Name="ArgeTasarimBilgisi" ColumnName="ArgeTasarimBilgisi" />
+                <ScalarProperty Name="ParcaGenelBilgisi" ColumnName="ParcaGenelBilgisi" />
+                <ScalarProperty Name="Durum" ColumnName="Durum" />
+                <ScalarProperty Name="GerceklesenProjeBitisTarihi" ColumnName="GerceklesenProjeBitisTarihi" />
+                <ScalarProperty Name="PlanlananProjeTarihi" ColumnName="PlanlananProjeTarihi" />
+                <ScalarProperty Name="ProjeBaslangicTarihi" ColumnName="ProjeBaslangicTarihi" />
+                <ScalarProperty Name="IleriKalitePlanlamasiAPQP" ColumnName="IleriKalitePlanlamasiAPQP" />
+                <ScalarProperty Name="ProsesTasarim" ColumnName="ProsesTasarim" />
+                <ScalarProperty Name="Fizibilite" ColumnName="Fizibilite" />
+                <ScalarProperty Name="YeniUrunTalep" ColumnName="YeniUrunTalep" />
+                <ScalarProperty Name="Aciklama" ColumnName="Aciklama" />
+                <ScalarProperty Name="YumakNo" ColumnName="YumakNo" />
+                <ScalarProperty Name="SiraNo" ColumnName="SiraNo" />
+                <ScalarProperty Name="KullaniciID" ColumnName="KullaniciID" />
+                <ScalarProperty Name="StokID" ColumnName="StokID" />
+                <ScalarProperty Name="ProjeUstID" ColumnName="ProjeUstID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProjeUstBilgileris">
+            <EntityTypeMapping TypeName="YumakModel.ProjeUstBilgileri">
+              <MappingFragment StoreEntitySet="ProjeUstBilgileri">
+                <ScalarProperty Name="Yuzde" ColumnName="Yuzde" />
+                <ScalarProperty Name="OEMNo" ColumnName="OEMNo" />
+                <ScalarProperty Name="Durum" ColumnName="Durum" />
+                <ScalarProperty Name="Aciklama" ColumnName="Aciklama" />
+                <ScalarProperty Name="GerceklesenProjeTarihi" ColumnName="GerceklesenProjeTarihi" />
+                <ScalarProperty Name="BildirimTarihi" ColumnName="BildirimTarihi" />
+                <ScalarProperty Name="PlanlananProjeTarihi" ColumnName="PlanlananProjeTarihi" />
+                <ScalarProperty Name="ProjeBaslangicTarihi" ColumnName="ProjeBaslangicTarihi" />
+                <ScalarProperty Name="KullaniciID" ColumnName="KullaniciID" />
+                <ScalarProperty Name="StokID" ColumnName="StokID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
