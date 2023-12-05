@@ -20,7 +20,7 @@ namespace yumak
         //deneme
         //branchdeneme
         //z-back
-
+        //esraaaaaaaaaaaaa
         private void btnBitenP_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             FrmBiten frm = new FrmBiten();
