@@ -17,6 +17,7 @@ namespace yumak
         {
             InitializeComponent();
         }
+        //deneme
 
         private void btnBitenP_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
